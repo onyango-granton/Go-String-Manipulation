@@ -330,7 +330,7 @@ func decimalBeforeBin(s string) string {
 }
 
 func main() {
-	var s1 string = "it (cap) was the best of times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
+	var s1 string = "it (cap) was the best of (cap, 3) times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
 
 	//var s2 string = "1E (hex) files were added"
 
@@ -349,5 +349,7 @@ func main() {
 	fmt.Println(numberAfterUp(s1))
 
 	fmt.Println(numberAfterLow(s1))
+
+	fmt.Println(numberAfterCap(s1))
 
 }
