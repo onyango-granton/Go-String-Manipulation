@@ -280,9 +280,9 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 
 	res := strings.Join(words, " ")
 	//re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
-	re := regexp.MustCompile(`\s*\(\s*up,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
+	re := regexp.MustCompile(`\s*\(\s*low,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
 	res = (re.ReplaceAllString(res, ""))
-	re2 := regexp.MustCompile(`\s*\(\s*up\s*\)\s*`)
+	re2 := regexp.MustCompile(`\s*\(\s*low\s*\)\s*`)
 	res = (re2.ReplaceAllString(res, " "))
 	fmt.Println(defaultValue)
 	
@@ -323,7 +323,80 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 			
 		}
 	}
-	return strings.Join(words, " ")
+
+
+	res := strings.Join(words, " ")
+	//re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
+	re := regexp.MustCompile(`\s*\(\s*cap,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
+	res = re.ReplaceAllString(res, "")
+	re2 := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
+	res = re2.ReplaceAllString(res, " ")
+	fmt.Println(defaultValue)
+	
+	return res
+
+
+	//return strings.Join(words, " ")
+ }
+
+
+ func punctuations(s string) {
+	marks := []string{".", ",", "!", "?", ":" ,";"}
+
+
+	for _,j := range marks{
+		k := ""
+
+		if j == "?" {
+			k = "\\?"
+		} else if j == "." {
+			k = "\\."
+		} else {
+			k = j
+		}
+
+		re := regexp.MustCompile(`\s*`+k+`\s*`)
+		s = re.ReplaceAllString(s, j + " ")
+	}
+	
+	
+	fmt.Println(s)
+ }
+
+
+ func followingPunc(s string) {
+	words := Split(s, " ")
+	marks := []string{".", ",", "!", "?", ":" ,";"}
+
+	markPresence := make(map[string]bool)
+
+	for _, mark := range marks{
+		markPresence[mark] = false
+	}
+
+	for _, word := range words{
+		count := 0
+		alphaMark := []bool{}
+		for _, alpha := range word{
+			
+			for _, mark := range marks{
+				if mark == string(alpha){
+					alphaMark = append(alphaMark, true)
+				} else {
+					alphaMark = append(alphaMark, false)
+				}
+			}
+			
+		}
+		for _, aM := range alphaMark{
+		 	if aM {
+		 		count++
+		 	}
+		 }
+		fmt.Println(count)
+	}
+
+
  }
 
 
@@ -410,8 +483,9 @@ func removeBlockWhiteSpace(s string) string{
 }
 
 func main() {
-	var s1 string = "it  (cap) was the best of (cap, 3) times, it was the worst of times (up, 3) , it was the age of (up) wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
+	//var s1 string = "it  (cap) was the best of (cap, 3) times  ., ,, !, ?, : and ; , it was the worst of times (up, 3) , it was the age of (up) wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
 
+	var s2 string = "Hello .... world"
 	//var s2 string = "1E (hex) files were added"
 
 	//var s3 string = "It has been 10 (bin) years"
@@ -426,7 +500,10 @@ func main() {
 
 	//fmt.Println(decimalBeforeBin(s3))
 
-	fmt.Println(numberAfterUp(s1))
+	//fmt.Println(numberAfterUp(s1))
+
+	//punctuations(s1)
+	followingPunc(s2)
 
 	//fmt.Println(numberAfterLow(s1))
 
