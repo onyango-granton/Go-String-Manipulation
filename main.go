@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -206,6 +207,9 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 	defaultValue := 1
 	words := Split(s, " ")
 	for i := 0; i < len(words); i++ {
+		if words[i] == "(up)"{
+			words[i-1] = ToUpper(words[i-1])
+		}
 		if words[i] == "(up," && i > 0 {
 			if j := lastIndex(words[i + 1], ')'); j != -1{
 				result := words[i+1][:j]
@@ -221,8 +225,24 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 				words[i-x] = ToUpper(words[i-x])
 			}
 		}
+		// if words[i] == "(up)" && i > 0 {
+		// 	words[i] = ""			
+		// }
+		// if words[i] == "(up," && i > 0 {
+		// 	words[i] = ""
+		// 	words[i + 1] = ""
+			
+		// }
 	}
-	return strings.Join(words, " ")
+	res := strings.Join(words, " ")
+	//re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
+	re := regexp.MustCompile(`\s*\(\s*up,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
+	res = (re.ReplaceAllString(res, ""))
+	re2 := regexp.MustCompile(`\s*\(\s*up\s*\)\s*`)
+	res = (re2.ReplaceAllString(res, " "))
+	fmt.Println(defaultValue)
+	
+	return res
  }
 
 
@@ -230,6 +250,9 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 	defaultValue := 1
 	words := Split(s, " ")
 	for i := 0; i < len(words); i++ {
+		if words[i] == "(low)"{
+			words[i-1] = ToUpper(words[i-1])
+		}
 		if words[i] == "(low," && i > 0 {
 			if j := lastIndex(words[i + 1], ')'); j != -1{
 				result := words[i+1][:j]
@@ -242,11 +265,30 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 			}
 			//fmt.Println(defaultValue)
 			for x := 1; x <= defaultValue; x++ {
-				words[i-x] = ToLower(words[i-x])
+				words[i-x] = ToUpper(words[i-x])
 			}
 		}
+		if words[i] == "(low)" && i > 0 {
+			words[i] = ""			
+		}
+		if words[i] == "(low," && i > 0 {
+			words[i] = ""
+			words[i + 1] = ""
+			
+		}
 	}
-	return strings.Join(words, " ")
+
+	res := strings.Join(words, " ")
+	//re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
+	re := regexp.MustCompile(`\s*\(\s*up,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
+	res = (re.ReplaceAllString(res, ""))
+	re2 := regexp.MustCompile(`\s*\(\s*up\s*\)\s*`)
+	res = (re2.ReplaceAllString(res, " "))
+	fmt.Println(defaultValue)
+	
+	return res
+
+	
  }
 
 
@@ -254,6 +296,9 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 	defaultValue := 1
 	words := Split(s, " ")
 	for i := 0; i < len(words); i++ {
+		if words[i] == "(cap)"{
+			words[i-1] = ToUpper(words[i-1])
+		}
 		if words[i] == "(cap," && i > 0 {
 			if j := lastIndex(words[i + 1], ')'); j != -1{
 				result := words[i+1][:j]
@@ -266,8 +311,16 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
 			}
 			//fmt.Println(defaultValue)
 			for x := 1; x <= defaultValue; x++ {
-				words[i-x] = Capitalize(words[i-x])
+				words[i-x] = ToUpper(words[i-x])
 			}
+		}
+		if words[i] == "(cap)" && i > 0 {
+			words[i] = ""			
+		}
+		if words[i] == "(cap," && i > 0 {
+			words[i] = ""
+			words[i + 1] = ""
+			
 		}
 	}
 	return strings.Join(words, " ")
@@ -312,6 +365,22 @@ func decimalBeforeHex(s string) string {
 	return strings.Join(words, " ")
 }
 
+func cleanUpWhiteSpace(s string) {
+	words := Split(s, " ")
+	for i:= 0; i < len(words); i++{
+		
+		if words[i] == "" {
+			words[i] = "hello2"
+		}
+		if words[i] == " " && words[i+1] == " " && words[i+2] != " " {
+			words[i] = ""
+			words[i + 1] = ""
+		}
+		fmt.Println(words[i])
+	}
+	//fmt.Println(strings.Join(words, " "))
+}
+
 
 func decimalBeforeBin(s string) string {
 	words := Split(s, " ")
@@ -329,8 +398,19 @@ func decimalBeforeBin(s string) string {
 	return strings.Join(words, " ")
 }
 
+func removeBlockWhiteSpace(s string) string{
+	words := Split(s, " ")
+	for i := 0; i < len(words); i++{
+		if words[i] == "(cap)" && i > 0 {
+			words[i] = ""
+			
+		}
+	}
+	return strings.Join(words, " ")
+}
+
 func main() {
-	var s1 string = "it (cap) was the best of (cap, 3) times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
+	var s1 string = "it  (cap) was the best of (cap, 3) times, it was the worst of times (up, 3) , it was the age of (up) wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was THE EPOCH OF INCREDULITY (low, 3) , it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
 
 	//var s2 string = "1E (hex) files were added"
 
@@ -348,8 +428,14 @@ func main() {
 
 	fmt.Println(numberAfterUp(s1))
 
-	fmt.Println(numberAfterLow(s1))
+	//fmt.Println(numberAfterLow(s1))
 
-	fmt.Println(numberAfterCap(s1))
+	//fmt.Println(numberAfterCap(s1))
+	//fmt.Println(removeBlockWhiteSpace(s1))
+	//cleanUpWhiteSpace(s1)
+	//fmt.Println(strings.Replace(s1, "(cap)", "", -1))
+	//fmt.Println(strings.Replace(s1, "(cap)", "", -1))
+	//re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
+	//fmt.Println(re.ReplaceAllString(s1, " "))
 
 }
