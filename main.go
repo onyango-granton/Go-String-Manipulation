@@ -364,39 +364,84 @@ func uppercaseBeforeUp(s string, optionalParam ...int) string {
  }
 
 
- func followingPunc(s string) {
-	words := Split(s, " ")
+//  func followingPunc(s string) {
+// 	words := Split(s, " ")
+// 	marks := []string{".", ",", "!", "?", ":" ,";"}
+
+// 	markPresence := make(map[string]bool)
+
+// 	for _, mark := range marks{
+// 		markPresence[mark] = false
+// 	}
+
+// 	for _, word := range words{
+// 		count := 0
+// 		alphaMark := []bool{}
+// 		for _, alpha := range word{
+			
+// 			for _, mark := range marks{
+// 				if mark == string(alpha){
+// 					alphaMark = append(alphaMark, true)
+// 				} else {
+// 					alphaMark = append(alphaMark, false)
+// 				}
+// 			}
+			
+// 		}
+// 		for _, aM := range alphaMark{
+// 		 	if aM {
+// 		 		count++
+// 		 	}
+// 		 }
+// 		fmt.Println(count)
+// 	}
+
+
+
+//  }
+ func isFollowingPunc(s string) bool {
 	marks := []string{".", ",", "!", "?", ":" ,";"}
+	count := 0
+	//markPresence := make(map[string]bool)
+	alphaMarks := []bool{}
 
-	markPresence := make(map[string]bool)
-
-	for _, mark := range marks{
-		markPresence[mark] = false
-	}
-
-	for _, word := range words{
-		count := 0
-		alphaMark := []bool{}
-		for _, alpha := range word{
-			
-			for _, mark := range marks{
-				if mark == string(alpha){
-					alphaMark = append(alphaMark, true)
-				} else {
-					alphaMark = append(alphaMark, false)
-				}
+	for _, alpha := range s{
+		for _, mark := range marks{
+			if mark == string(alpha){
+				alphaMarks = append(alphaMarks, true)
+			} else {
+				alphaMarks = append(alphaMarks, false)
 			}
-			
 		}
-		for _, aM := range alphaMark{
-		 	if aM {
-		 		count++
-		 	}
-		 }
-		fmt.Println(count)
 	}
 
+	for _, alphaMark := range alphaMarks{
+		if alphaMark{
+			count++
+		}
+	}
 
+	if count > 1{
+		return true
+	}
+
+	return false
+
+ }
+
+
+ func followingPunc(s string) string {
+	s2 := ""
+	s3 := ""
+	s1 := Split(s, " ")
+	for _, word := range s1{
+		if isFollowingPunc(word){
+			s2 = strings.Join(s1, " ")
+			re := regexp.MustCompile(`\s*`+word+`\s*`)
+			s3 = re.ReplaceAllString(s2, word + " ")
+		} 
+	}
+	return s3
  }
 
 
@@ -503,7 +548,14 @@ func main() {
 	//fmt.Println(numberAfterUp(s1))
 
 	//punctuations(s1)
-	followingPunc(s2)
+
+	// s3 := Split(s2, " ")
+	
+	// for _, word := range s3{
+	// 	fmt.Println(isFollowingPunc(word))
+	// }
+
+	fmt.Println(followingPunc(s2))
 
 	//fmt.Println(numberAfterLow(s1))
 
