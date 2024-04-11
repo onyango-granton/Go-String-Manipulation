@@ -68,11 +68,14 @@ func formatPunctuation(word string) string {
 	return strings.Join(words, " ")
 }
 
+//func isSpeec
+
 func main() {
-	s1 := "Hello . world"
+	//s1 := "Hello . world"
+	s1 := "it (cap) was the best of times, it was the worst of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
 	s2 := strings.Split(s1, " ")
 	for _, word := range s2 {
 		fmt.Println(isSpecialword(word))
 	}
-	fmt.Println(formatSentence(s1))
+	fmt.Println(formatPunctuation(s1))
 }
