@@ -25,7 +25,7 @@ func isSpecialword(s string) bool {
 		}
 	}
 
-	if count > 0 {
+	if count > 1 {
 		return true
 	}
 
