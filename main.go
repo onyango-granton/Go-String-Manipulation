@@ -553,14 +553,70 @@
 package main
 
 import (
-	"fmt"
+	
 	"go_reloaded/Functions"
+	
 )
 
 func main(){
-	s1 := "it (cap) was the best of times, it was the worst (cap, 3) of times (up) , it was the age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
-	fmt.Println(go_reloaded.HexToDec("1E (hex) files were added"))
-	fmt.Println(go_reloaded.BinToDec("It has been 10 (bin) years"))
-	fmt.Println(go_reloaded.Capitalize(s1))
-	fmt.Println(go_reloaded.LowerCase(s1))
+	// files := os.Args[1:]
+	// //fmt.Println(inputFile[1])
+	// inputFile := files[0]
+	// outputFile := files[1]
+
+	// file, inputerr := os.Open(inputFile)
+	// if inputerr != nil {
+	// 	fmt.Println("Error: " + inputerr.Error())
+	// 	return
+	// }
+
+	// s1 := ""
+	
+	// scanner := bufio.NewScanner(file)
+
+	// for scanner.Scan() {
+	// 	line := scanner.Text()
+	// 	s1 += line + string('\n')
+		
+	// }
+	// //fmt.Println(s1)
+
+	// //s1 = go_reloaded.HexToDec(go_reloaded.BinToDec(go_reloaded.Capitalize(go_reloaded.UpperCase(go_reloaded.LowerCase(go_reloaded.GroupPunctations(go_reloaded.SinglePunctuations(go_reloaded.PairSpeechMark(go_reloaded.PunctuateVowel(s1)))))))))
+
+	// s1 = go_reloaded.BinToDec(s1)
+	// s1 = go_reloaded.HexToDec(s1)
+	// s1 = go_reloaded.Capitalize(s1)
+	// s1 = go_reloaded.UpperCase(s1)
+	// s1 = go_reloaded.LowerCase(s1)
+	// s1 = go_reloaded.GroupPunctations(s1)
+	// s1 = go_reloaded.SinglePunctuations(s1)
+	// s1 = go_reloaded.WordStartPunc(s1)
+	// s1 = go_reloaded.PairSpeechMark(s1)
+	// s1 = go_reloaded.PunctuateVowel(s1)
+	// // s1 = go_reloaded.WordStartPunc(s1)
+
+
+	// ofile, outputerr := os.Create(outputFile)
+	// if outputerr != nil {
+	// 	fmt.Println("Error: "+ outputerr.Error())
+	// 	return
+	// }
+
+	// _,err := ofile.WriteString(s1)
+	// if err != nil{
+	// 	fmt.Println("Error: "+err.Error())
+	// 	return
+	// }
+
+	//s1 := "it (cap) was the ... best of !! times, it was the ,worst (cap, 3) of times (up) , it was ' the ' a age of wisdom, it was the age of foolishness (cap, 6) , it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of darkness, it was the spring of hope, IT WAS THE (low, 3) winter of despair."
+	// fmt.Println(go_reloaded.HexToDec("1E (hex) files were added"))
+	// fmt.Println(go_reloaded.BinToDec("It has been 10 (bin) years"))
+	// fmt.Println(go_reloaded.Capitalize(s1))
+	// fmt.Println(go_reloaded.LowerCase(s1))
+	//fmt.Println(go_reloaded.UpperCase(s1))
+	//fmt.Println(go_reloaded.GroupPunctations(s1))
+	//fmt.Println(go_reloaded.SinglePunctuations(s1))
+	//fmt.Println(go_reloaded.PairSpeechMark(s1))
+	//fmt.Println(go_reloaded.PunctuateVowel(s1))
+	go_reloaded.InputToOutput()
 }

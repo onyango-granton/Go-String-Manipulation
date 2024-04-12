@@ -24,7 +24,7 @@ func main() {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		s1 += line
+		s1 += line + string('\n')
 		
 	}
 	fmt.Println(s1)
