@@ -41,7 +41,11 @@ func InputToOutput(){
 	// s1 = go_reloaded.PunctuateVowel(s1)
 	// s1 = go_reloaded.WordStartPunc(s1)
 
-	s1 = OutputFunc(s1)
+	s2,err1 := OutputFunc(s1)
+	if err1 != nil {
+		fmt.Println(err1.Error())
+		return
+	}
 
 
 	ofile, outputerr := os.Create(outputFile)
@@ -50,7 +54,7 @@ func InputToOutput(){
 		return
 	}
 
-	_,err := ofile.WriteString(s1)
+	_,err := ofile.WriteString(s2)
 	if err != nil{
 		fmt.Println("Error: "+err.Error())
 		return

@@ -1,6 +1,6 @@
 package go_reloaded
 
-func OutputFunc(s1 string) string {
+func OutputFunc(s1 string) (string, error){
 	s1 = BinToDec(s1)
 	s1 = HexToDec(s1)
 	s1 = GroupPunctations(s1)
@@ -14,5 +14,5 @@ func OutputFunc(s1 string) string {
 	s1 = PairSpeechMark(s1)
 	s1 = PunctuateVowel(s1)
 
-	return s1
+	return s1, nil
 }
