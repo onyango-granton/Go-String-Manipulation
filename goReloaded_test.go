@@ -17,8 +17,8 @@ func TestFunc(t *testing.T) {
 		return
 	}
 
-	msg, err2 := go_reloaded.OutputFunc(string(data))
-	fmt.Println(msg)
+	_, err2 := go_reloaded.OutputFunc(string(data))
+	// fmt.Println(msg)
 
 	if err2 != nil {
 		t.Fatalf(err2.Error())

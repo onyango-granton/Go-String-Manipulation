@@ -70,15 +70,5 @@ func Capitalize(s string) string {
 		}
 	}
 
-	// res := strings.Join(words, " ")
-	// //re := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
-	// re := regexp.MustCompile(`\s*\(\s*cap,\s*`+strconv.Itoa(defaultValue)+`\s*\)\s*`)
-	// res = re.ReplaceAllString(res, "")
-	// re2 := regexp.MustCompile(`\s*\(\s*cap\s*\)\s*`)
-	// res = re2.ReplaceAllString(res, " ")
-	// fmt.Println(defaultValue)
-
 	return strings.Join(words, " ")
-
-	// return strings.Join(words, " ")
 }
