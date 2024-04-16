@@ -11,7 +11,7 @@ func LowerCase(s string) string {
 	words := Split(s, " ")
 	for i := 0; i < len(words); i++ {
 		if words[i] == "(low)" {
-			words[i-1] = ToUpper(words[i-1])
+			words[i-1] = ToLower(words[i-1])
 		}
 		if words[i] == "(low," && i > 0 {
 			if j := lastIndex(words[i+1], ')'); j != -1 {
@@ -25,7 +25,7 @@ func LowerCase(s string) string {
 			}
 
 			for x := 1; x <= defaultValue; x++ {
-				words[i-x] = ToUpper(words[i-x])
+				words[i-x] = ToLower(words[i-x])
 			}
 		}
 		if words[i] == "(low)" && i > 0 {
