@@ -49,7 +49,7 @@ The tool will perform the following modifications to the text:
 
     - Example: "There it was. A amazing rock!" -> "There it was. An amazing rock!"
 
-Contribution Guidelines
+### Contribution Guidelines
 
     Fork the repository.
     Create a feature branch (git checkout -b feature/MyFeature).
@@ -57,9 +57,10 @@ Contribution Guidelines
     Push to the branch (git push origin feature/MyFeature).
     Create a new Pull Request.
 
-Testing
+### Testing
 
 Test your modifications thoroughly, considering edge cases and expected behavior for each transformation and formatting rule.
-License
+
+### License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
