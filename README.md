@@ -1,4 +1,4 @@
-## Project Title: Go Text Editing Tool
+## go-reloaded (Go Text Editing Tool)
 ### Introduction
 
 This project aims to create a text completion, editing, and auto-correction tool using Go. The tool will receive as input a text file that requires modifications and output the modified text to another file. The modifications include various transformations and formatting rules.
